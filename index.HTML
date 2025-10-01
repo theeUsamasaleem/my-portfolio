@@ -940,36 +940,37 @@
         });
 
         // --- 4. Mobile Menu Toggle Logic ---
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIcon = document.getElementById('menu-icon');
-        const closeIcon = document.getElementById('close-icon');
-        const navLinks = mobileMenu.querySelectorAll('a');
+  // Mobile Menu Toggle Logic
+const mobileMenuButton = document.getElementById('mobile-menu-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const menuIcon = document.getElementById('menu-icon');
+const closeIcon = document.getElementById('close-icon');
+const navLinks = mobileMenu.querySelectorAll('a');
 
-        mobileMenuButton.addEventListener('click', () => {
-            const isOpen = mobileMenu.classList.toggle('open');
+mobileMenuButton.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('hidden'); // toggle hidden
 
-            // Toggle icons
-            if (isOpen) {
-                menuIcon.classList.add('hidden');
-                closeIcon.classList.remove('hidden');
-                mobileMenuButton.setAttribute('aria-expanded', 'true');
-            } else {
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-                mobileMenuButton.setAttribute('aria-expanded', 'false');
-            }
-        });
+    // Toggle icons
+    if (!isOpen) { // menu is now visible
+        menuIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'true');
+    } else { // menu is hidden
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+    }
+});
 
-        // Close mobile menu when clicking on links
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('open');
-                menuIcon.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-                mobileMenuButton.setAttribute('aria-expanded', 'false');
-            });
-        });
+// Close mobile menu when clicking on links
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+    });
+});
 
         // --- 5. Dark Mode Toggle Logic ---
         const themeToggle = document.getElementById('theme-toggle');
